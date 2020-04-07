@@ -26,6 +26,10 @@ class User extends Model {
     return this;
   }
 
+  static associate(models) {
+    this.belongsTo(models.File, { foreignKey: 'avatar_id', as: 'avatar' });
+  }
+
   // Função para validar senha na hora de gerar o token
   checkPassword(password) {
     return bcrypt.compare(password, this.password_hash);
